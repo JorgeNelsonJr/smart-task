@@ -3,36 +3,33 @@ package br.com.tarefas.smarttasks.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-@Entity // Isso avisa ao Spring que esta classe é uma tabela no banco
+@Entity 
 public class Tarefa {
 
-    @Id // Chave primária
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremento (1, 2, 3...)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     private String titulo;
 
-    // Estes campos a IA que vai sugerir depois
     private String categoria;
     private String prioridade;
 
-    @Column(length = 2000) // Aumentamos o tamanho para caber o texto da IA
+    @Column(length = 2000) 
     private String descricaoIa;
 
     private LocalDate dataCriacao;
 
-    // --- CONSTRUTOR VAZIO (Obrigatório para o JPA) ---
     public Tarefa() {
         this.dataCriacao = LocalDate.now();
     }
 
-    // --- CONSTRUTOR COM CAMPOS (Facilita para nós criarmos) ---
     public Tarefa(String titulo) {
         this.titulo = titulo;
         this.dataCriacao = LocalDate.now();
     }
 
-    // --- GETTERS E SETTERS (Sem Lombok, precisamos escrever todos) ---
+    // --- GETTERS E SETTERS
 
     public Long getId() {
         return id;
@@ -81,4 +78,5 @@ public class Tarefa {
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
+
 }
