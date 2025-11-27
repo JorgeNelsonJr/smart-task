@@ -16,20 +16,16 @@ public class TarefaController {
         this.service = service;
     }
 
-    // 1. Rota para mostrar a tela inicial (GET /)
     @GetMapping("/")
     public String index(Model model) {
-        // Busca todas as tarefas no banco e manda para o HTML
         model.addAttribute("tarefas", service.listarTodas());
-        return "index"; // Vai procurar um arquivo index.html
+        return "index";
     }
 
-    // 2. Rota para salvar uma nova tarefa (POST /criar)
     @PostMapping("/criar")
     public String criar(Tarefa tarefa) {
-        // Chama o serviço que usa a IA antes de salvar
         service.criarTarefaComIA(tarefa);
-        // Recarrega a página inicial
         return "redirect:/";
     }
+
 }
